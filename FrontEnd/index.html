@@ -13,7 +13,7 @@
     <div class="container mt-5">
         <div class="card shadow-lg p-4">
             <form id="studentForm">
-                <h2 class="text-center mb-3">Add Students</h2>
+                <h2 class="text-center mb-3">Student Manager</h2>
                 <p class="text-center text-muted mb-4">Register to get full access now :)</p>
 
                 <div class="text-center mb-4">
@@ -65,11 +65,14 @@
                 </div>
 
                 <div class="btns">
-                    <button type="submit" class="noselect"><span class="text">Register</span><span class="icon"><img src="img/diskette.png" alt="" srcset=""></span></button>
+                    <button type="submit" class="noselect"><span class="text">Register</span><span class="icon"><img
+                                src="img/diskette.png" alt="" srcset=""></span></button>
 
-                    <button type="update" class="noselect1"><span class="text">Update</span><span class="icon"><img src="img/changes.png" alt="" srcset=""></span></button>
+                    <button type="update" class="noselect1"><span class="text">Update</span><span class="icon"><img
+                                src="img/changes.png" alt="" srcset=""></span></button>
 
-                    <button type="delete" class="noselect2"><span class="text">Delete</span><span class="icon"><img src="img/delete.png" alt="" srcset=""></span></button>
+                    <button type="delete" class="noselect2"><span class="text">Delete</span><span class="icon"><img
+                                src="img/delete.png" alt="" srcset=""></span></button>
                 </div>
             </form>
         </div>
@@ -90,7 +93,7 @@
                 </tr>
             </thead>
             <tbody id="studentTableBody">
-    
+
             </tbody>
         </table>
 
@@ -98,6 +101,38 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
+
+    <!-- Success Toast Container -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="img/checked.png" class="rounded me-2" alt="">
+                <strong class="me-auto">Success</strong>
+                <small>Just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body text-md-start">
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Toast Container -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast-er" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="img/cancel.png" class="rounded me-2" alt="">
+                <strong class="me-auto">Error</strong>
+                <small>Just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body text-md-start">
+                
+            </div>
+        </div>
+    </div>
+
+
 </body>
 
 </html>

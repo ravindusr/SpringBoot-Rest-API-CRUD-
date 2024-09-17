@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-   
+
     async function getStudents() {
         const url = 'http://localhost:8080/student/getAll';
         try {
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error in response code:', data.code);
             }
         } catch (error) {
-            console.error('Error fetching data:', error);
+            console.error('Error fetching data:', data.code);
         }
     }
 
@@ -53,19 +53,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const result = await response.json();
+
             if (result.code === '00') {
                 document.getElementById('studentForm').reset();
-
                 getStudents();
+                showToast('Student Added successfully!');
             } else {
                 console.error('Error in response code:', result.code);
             }
         } catch (error) {
-            console.error('Error handling form submission:', error);
+            console.error('Error handling form submission:', result.code);
         }
     }
 
-    
+
     document.getElementById('studentForm').addEventListener('submit', (event) => {
         event.preventDefault();
 
@@ -83,14 +84,14 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         if (studentData.id) {
-            
+
             handleFormSubmit('http://localhost:8080/student/update', 'PUT', studentData);
         } else {
-            handleFormSubmit('http://localhost:8080/student/add', 'POST', studentData);
+            handleFormSubmit('http://localhost:8080/student/create', 'POST', studentData);
         }
     });
 
-    
+
     async function deleteStudent(id) {
         try {
             const response = await fetch(`http://localhost:8080/student/delete/${id}`, {
@@ -104,16 +105,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = await response.json();
             if (result.code === '00') {
                 getStudents();
+                showToast('Student Deleted successfully!');
             } else {
                 console.error('Error in response code:', result.code);
             }
         } catch (error) {
-            console.error('Error deleting student:', error);
+            console.error('Error deleting student:', result.code);
         }
     }
 
     function setData(row) {
-        document.getElementById('txt-id').value = row.dataset.id; 
+        document.getElementById('txt-id').value = row.dataset.id;
         document.getElementById('txt-name').value = row.children[1].textContent;
         document.getElementById('txt-email').value = row.children[2].textContent;
         document.getElementById('txt-age').value = row.children[3].textContent;
@@ -132,12 +134,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+
     document.querySelector('button[type="delete"]').addEventListener('click', () => {
         const id = document.getElementById('txt-id').value;
         if (id) {
             deleteStudent(id);
         } else {
-            console.error('No student selected for deletion.');
+            showErrorToast('No student selected for deletion.');
         }
     });
 
@@ -157,11 +160,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 guardianAddress: document.getElementById('txt-Gaddress').value,
             };
             handleFormSubmit('http://localhost:8080/student/update', 'PUT', studentData);
+            showToast('Student Updated successfully!');
         } else {
-            console.error('No student selected for update.');
+            showErrorToast('No student selected for update.');
         }
     });
 
-    
+
     getStudents();
+
+    function showToast(message) {
+        const toastEl = document.getElementById('liveToast');
+        const toast = new bootstrap.Toast(toastEl, {
+            autohide: true,
+            delay: 5000 
+        });
+        const toastBody = toastEl.querySelector('.toast-body');
+        toastBody.textContent = message;
+        toast.show();
+    }
+
+    function showErrorToast(message) {
+        const toastEl = document.getElementById('liveToast-er');
+        const toast = new bootstrap.Toast(toastEl, {
+            autohide: true,
+            delay: 5000 
+        });
+        const toastBody = toastEl.querySelector('.toast-body');
+        toastBody.textContent = message;
+        toast.show();
+    }
+    
+    
+
 });
