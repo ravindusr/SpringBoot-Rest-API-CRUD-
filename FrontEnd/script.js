@@ -125,6 +125,19 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('txt-Gemail').value = row.children[7].textContent;
         document.getElementById('txt-Gcontact').value = row.children[8].textContent;
         document.getElementById('txt-Gaddress').value = row.children[9].textContent;
+
+
+        document.getElementById('id').textContent = row.dataset.id;
+        document.getElementById('name').textContent = row.children[1].textContent;
+        document.getElementById('email').textContent = row.children[2].textContent;
+        document.getElementById('age').textContent = row.children[3].textContent;
+        document.getElementById('contact').textContent = row.children[4].textContent;
+        document.getElementById('address').textContent = row.children[5].textContent;
+        document.getElementById('g-name').textContent = row.children[6].textContent;
+        document.getElementById('g-email').textContent = row.children[7].textContent;
+        document.getElementById('g-contact').textContent = row.children[8].textContent;
+        document.getElementById('g-address').textContent = row.children[9].textContent;
+
     }
 
     document.getElementById('studentTableBody').addEventListener('click', (event) => {
@@ -190,7 +203,6 @@ document.addEventListener('DOMContentLoaded', () => {
         toastBody.textContent = message;
         toast.show();
     }
-    
     
 
 });
